@@ -1,0 +1,95 @@
+@import '../../app/styles/functions.scss';
+
+.container {
+    min-height: 35vh;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: no-repeat fixed center;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6)
+}
+
+.subContainer {
+    @include contentSize;
+    margin: 0 auto;
+    display: flex;
+    gap: 2vh;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 3vh;
+
+    @media screen and (orientation: portrait) {
+        flex-direction: column;
+        gap: 1.5vh;
+    }
+}
+
+.imageArea {
+    width: 14vh;
+    height: 14vh;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &>img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.nameAndTag {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5vh;
+
+    &>h3 {
+        font-size: 6vh;
+
+        @media screen and (orientation: portrait) {
+            font-size: 4.5vh;
+        }
+    }
+
+    &>span {
+        opacity: 0.7;
+
+        @media screen and (orientation: portrait) {
+            font-size: 2vh;
+        }
+    }
+}
+
+.lvl {
+    font-size: 3vh;
+
+    @media screen and (orientation: portrait) {
+        text-align: center;
+    }
+}

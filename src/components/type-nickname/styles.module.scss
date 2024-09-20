@@ -1,0 +1,90 @@
+@import '../../app/styles/functions.scss';
+
+.container {
+    @include contentSize;
+    @include flexCenter;
+    flex-direction: column;
+    gap: 4vh;
+    height: calc(100vh - 12vh);
+    margin: 0 auto;
+    padding-bottom: 5vh;
+
+    &>h1 {
+        font-size: 7vh;
+        text-align: center;
+
+        @media screen and (orientation: portrait) {
+            font-size: 4vh;
+        }
+    }
+}
+
+.inputArea {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    width: 70%;
+
+    @media screen and (orientation: portrait) {
+        width: 100%;
+    }
+}
+
+.gameName,
+.tagline,
+.btn,
+.regions {
+    height: 10vh;
+    font-size: 3.5vh;
+
+    @media screen and (orientation: portrait) {
+        height: 5vh;
+        font-size: 2vh;
+    }
+}
+
+.gameName {
+    width: 50%;
+
+    @media screen and (orientation: portrait) {
+        width: 35%;
+    }
+}
+
+.tagline {
+    width: 30%;
+
+    @media screen and (orientation: portrait) {
+        width: 35%;
+    }
+}
+
+.regions {
+    width: 20%;
+    border-color: var(--fg-color);
+
+    @media screen and (orientation: portrait) {
+        width: 30%;
+
+    }
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    width: 100%;
+    letter-spacing: 0.3vh;
+    width: 70%;
+}
+
+.description {
+    font-size: 1.8vh;
+    opacity: 0.5;
+    text-align: center;
+    width: 50%;
+
+    @media screen and (orientation: portrait) {
+        width: 100%;
+    }
+}

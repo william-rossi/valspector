@@ -1,0 +1,17 @@
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin contentSize {
+  max-width: 150vh;
+  padding-left: 3vh;
+  padding-right: 3vh;
+
+  @media screen and (orientation: portrait) {
+    width: 100%;
+    padding-left: 2vh;
+    padding-right: 2vh;
+  }
+}
