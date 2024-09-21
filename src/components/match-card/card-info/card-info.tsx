@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './styles.module.scss'
 import { Match } from '@/data/match';
 import { MatchProps } from '@/models/matchlist';

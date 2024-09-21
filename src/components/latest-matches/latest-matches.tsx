@@ -42,7 +42,7 @@ export default function LatestMatches() {
         if (loadingMatches) {
             return <LoadingMatches />
         }
-        else if ((!matches || getMatches()?.length! < 1) && !loadingMatches) {
+        else if ((!matches || (getMatches() && getMatches()!.length < 1)) && !loadingMatches) {
             return <NotFoundMatches isComp={false} />
         }
         else {

@@ -163,7 +163,9 @@ export default function TypeNickname() {
             <button onClick={fetchUserData} className={styles.btn} disabled={loading}>
                 {loading ? 'SEARCHING...' : 'SEARCH'}
             </button>
-            <p className={styles.description}>If you're entering your RIOT ID and TAG correctly but it's not being found, please try playing any match in Valorant, then search again.</p>
+            <p className={styles.description}>
+                If you&apos;re entering your RIOT ID and TAG correctly but it&apos;s not being found, please try playing any match in Valorant, then search again.
+            </p>
         </section>
     )
 }
