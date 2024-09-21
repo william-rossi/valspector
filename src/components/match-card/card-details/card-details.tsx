@@ -36,7 +36,7 @@ export default function CardDetails(props: Props) {
           <div className={styles.allPlayers}>
             {
               Match.getRedPlayers(props.match).map((player, j) => (
-                <div title={`${j === 0 ? "(MVP)" : ""} ${player.stats.score}pts`} key={j} className={styles.player}>
+                <div data-title={`${j === 0 ? "(MVP)" : ""} ${player.stats.score}pts`} key={j} className={styles.player}>
                   <b>{j === 0 && "★"} {player.name}</b>
                   <i>{player.tier.name} - Lvl. {player.account_level}</i>
                   <span>{player.agent.name}</span>
