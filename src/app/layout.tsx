@@ -5,6 +5,7 @@ import Header from "@/components/header/header";
 import { AccountProvider } from "@/context/account-context";
 import { MessageProvider } from "@/context/message/message-context";
 import { MatchesProvider } from "@/context/matches-context";
+import Footer from "@/components/footer/footer";
 
 const play = Play({ weight: '400', subsets: ['latin'] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
               <main>
                 {children}
               </main>
+              <Footer />
             </MessageProvider>
           </MatchesProvider>
         </AccountProvider>

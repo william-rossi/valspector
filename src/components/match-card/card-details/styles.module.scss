@@ -1,0 +1,110 @@
+.container {
+    display: flex;
+    gap: 5vh;
+    background: linear-gradient(90deg, rgba(42, 45, 55, 1) 0%, rgba(27, 29, 36, 0) 100%);
+    border-radius: 0 0 0 0.5vh;
+    padding: 2vh;
+
+    @media screen and (orientation: portrait) {
+        flex-direction: column;
+        gap: 2vh;
+    }
+}
+
+.matchInfos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+
+    @media screen and (orientation: portrait) {
+        align-items: center;
+        justify-content: center;
+    }
+
+    &>h3 {
+        margin-bottom: 2vh;
+        font-size: 2.7vh;
+    }
+
+    &>label {
+        font-size: 2.3vh;
+    }
+
+    &>span {
+        font-size: 2vh;
+    }
+}
+
+.teams {
+    display: flex;
+    flex: 1;
+    gap: 1vh;
+    width: 100%;
+
+    @media screen and (orientation: portrait) {
+        flex-direction: column;
+    }
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5vh;
+    flex: 1;
+    border-left: 0.2vh solid var(--bg-color);
+
+    @media screen and (orientation: portrait) {
+        border-left: none;
+        border-top: 0.2vh solid var(--bg-color);
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+    }
+}
+
+.blueTitle,
+.redTitle {
+    font-size: 2.7vh;
+}
+
+.blueTitle {
+    background: -webkit-linear-gradient(var(--text-color), #00aaff);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.redTitle {
+    background: -webkit-linear-gradient(var(--text-color), hsl(0, 100%, 56%));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.allPlayers {
+    display: flex;
+    gap: 2vh;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vh;
+    min-width: 15vh;
+
+    &>b {
+        font-size: 1.8vh;
+    }
+
+    &>span,
+    &>i {
+        font-size: 1.5vh;
+    }
+
+    &>label {
+        font-size: 1.7vh;
+        margin-top: 0.5vh;
+        font-weight: bold;
+    }
+}

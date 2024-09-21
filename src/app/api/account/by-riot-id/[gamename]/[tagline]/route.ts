@@ -17,7 +17,7 @@ export async function GET(
         }
 
         const response = await fetch(
-            `${base_url}/v1/account/${params.gamename}/${params.tagline}`,
+            `${base_url}/v1/account/${params.gamename.trim()}/${params.tagline}`,
             {
                 headers: {
                     "Authorization": `${process.env.NEXT_PUBLIC_API_KEY}`

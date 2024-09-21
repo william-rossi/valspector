@@ -5,7 +5,7 @@ import { createContext, useState, ReactNode, useContext } from 'react'
 
 interface MatchesContextType {
   matches: MatchlistResponse | null
-  setMatches: (matches: MatchlistResponse) => void
+  setMatches: (matches: MatchlistResponse | null) => void
   loadingMatches: boolean | null
   setLoadingMatches: (e: boolean) => void
 }

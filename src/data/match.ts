@@ -52,4 +52,25 @@ export class Match {
         const src = `${imagePath}/${item.metadata.map.name.toLowerCase()}.jpg`
         return src
     }
+
+    static getEa = (item: MatchProps) => {
+        const ea = item.metadata.season.short
+        const episode = ea[1]
+        const act = ea[3]
+        return `Episode ${episode} Act ${act}`
+    }
+
+    static getBluePlayers = (item: MatchProps) => {
+        const players = item.players
+            .filter(p => p.team_id.toLocaleLowerCase() === 'blue')
+            .sort((a, b) => b.stats.score - a.stats.score)
+        return players
+    }
+
+    static getRedPlayers = (item: MatchProps) => {
+        const players = item.players
+            .filter(p => p.team_id.toLocaleLowerCase() === 'red')
+            .sort((a, b) => b.stats.score - a.stats.score)
+        return players
+    }
 }

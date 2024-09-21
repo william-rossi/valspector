@@ -56,7 +56,7 @@ export default function MyRank() {
         const fetchMatchlist = async () => {
             setLoadingMatches(true)
             try {
-                const response = await fetch(`/api/matches/matchlist/${account?.data.region}/${account?.data.name}/${account?.data.tag}`,
+                const response = await fetch(`/api/matches/matchlist/${account?.data.region.trim()}/${account?.data.name.trim()}/${account?.data.tag.trim()}`,
                     {
                         cache: 'no-store'
                     }
@@ -71,7 +71,6 @@ export default function MyRank() {
                 const data = await response.json() as MatchlistResponse
 
                 setMatches(data)
-                console.log(data.data.slice(0, 1))
             }
             catch (e) {
                 showMessage((e as Error).message || 'Unexpected error.', { type: 'danger' })
@@ -83,27 +82,29 @@ export default function MyRank() {
 
         if (!matches)
             fetchMatchlist()
-    }, [showStats])
+    }, [statsId])
 
     useEffect(() => {
         if (typeof document !== 'undefined') {
-            const el = document.getElementById(statsId)
+            const el = document.getElementById(statsId);
 
             const observer = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting)
-                    setShowStats(true)
+                if (entries[0].isIntersecting) {
+                    setShowStats(true);
+                    observer.disconnect();
+                }
             }, {
                 threshold: window.innerWidth > window.innerHeight ? 0.7 : 0.3,
-            })
+            });
 
             if (el) {
-                observer.observe(el)
+                observer.observe(el);
                 return () => {
-                    observer.unobserve(el)
-                }
+                    observer.unobserve(el);
+                };
             }
         }
-    }, [])
+    }, [statsId])
 
     const infos: InfoProps[] = [
         { name: "Highest rank", data: mmr?.data.highest_rank.patched_tier ?? "N/A", title: `Episode ${mmr?.data.highest_rank.season[1]} Act ${mmr?.data.highest_rank.season[3]}` },

@@ -1,0 +1,106 @@
+@import '../../../app/styles/functions.scss';
+
+.container {
+    display: flex;
+    gap: 2vh;
+    height: 17vh;
+    width: 100%;
+    border-radius: 0.5vh;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+}
+
+.won {
+    background: linear-gradient(90deg, rgba(37, 165, 139, 1) 0%, rgba(27, 29, 36, 0) 100%);
+}
+
+.lost {
+    background: linear-gradient(90deg, rgba(255, 70, 85, 0.7372198879551821) 0%, rgba(27, 29, 36, 0) 100%);
+}
+
+.mapImage {
+    width: 17vh;
+    border-radius: 0.5vh 0 0 0.5vh;
+
+    &>img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.5vh 0 0 0.5vh;
+    }
+
+    @media screen and (orientation: portrait) {
+        width: 15vh;
+    }
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+
+    @media screen and (orientation: portrait) {
+        &>h5 {
+            font-size: 2.3vh;
+        }
+    }
+}
+
+.result {
+    @include flexCenter;
+    flex-direction: column;
+    gap: 0.5vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: fit-content;
+    height: 100%;
+    text-transform: uppercase;
+
+    @media screen and (orientation: portrait) {
+        display: none;
+    }
+}
+
+.resultText {
+    font-size: 1.8vh;
+
+    @media screen and (orientation: landscape) {
+        display: none;
+    }
+}
+
+.kda {
+    display: flex;
+    flex-direction: column;
+
+    &>label,
+    &>span {
+        font-size: 2.5vh;
+
+        @media screen and (orientation: portrait) {
+            font-size: 1.8vh;
+        }
+    }
+}
+
+.datetime {
+    font-size: 2vh;
+
+    @media screen and (orientation: portrait) {
+        font-size: 1.7vh;
+    }
+}
+
+.score {
+    font-size: 1.8vh;
+
+    @media screen and (orientation: portrait) {
+        font-size: 1.5vh;
+    }
+}

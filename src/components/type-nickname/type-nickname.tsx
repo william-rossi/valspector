@@ -7,7 +7,7 @@ import { useAccount } from '@/context/account-context'
 import { useMessage } from '@/context/message/message-context'
 import { ErrorResponse } from '@/models/error'
 import { MmrResponse } from '@/models/mmr'
-import { MatchlistResponse } from '@/models/matchlist'
+import { useMatches } from '@/context/matches-context'
 
 interface OptionProps {
     title: string
@@ -16,11 +16,12 @@ interface OptionProps {
 
 export default function TypeNickname() {
     const { account, mmr, setAccount, setMmr } = useAccount()
+    const { setMatches } = useMatches()
     const { showMessage } = useMessage()
-    const [gamename, setGamename] = useState<string>("perequito")
-    const [tagline, setTagline] = useState<string>("1234")
-    const [loading, setLoading] = useState<boolean>(false)
+    const [gamename, setGamename] = useState<string>("")
+    const [tagline, setTagline] = useState<string>("")
     const [region, setRegion] = useState("");
+    const [loading, setLoading] = useState<boolean>(false)
 
     const options: OptionProps[] = [
         { title: "BR", value: "br" },
@@ -37,7 +38,7 @@ export default function TypeNickname() {
 
     const fetchUserData = async () => {
         if (!gamename || !tagline) {
-            showMessage("Please, fill your Game name and tagline.", { type: 'information' })
+            showMessage("Please, fill your RIOT ID and TAG.", { type: 'information' })
             return
         }
 
@@ -56,7 +57,9 @@ export default function TypeNickname() {
     }
 
     const fetchAccount = async () => {
-        const response = await fetch(`/api/account/by-riot-id/${gamename}/${tagline}`)
+        const tag = tagline.trim().startsWith("#") ? tagline.substring(1) : tagline
+
+        const response = await fetch(`/api/account/by-riot-id/${gamename.trim()}/${tag.trim()}`)
 
         if (!response.ok) {
             if (response.status === 404) {
@@ -66,6 +69,7 @@ export default function TypeNickname() {
             }
             throw new Error(response.statusText)
         }
+        setAccount(null)
 
         const data = await response.json() as AccountResponse
 
@@ -73,11 +77,13 @@ export default function TypeNickname() {
     }
 
     const fetchMmr = async () => {
-        const response = await fetch(`/api/account/mmr/${region}/${gamename}/${tagline}`)
+        const tag = tagline.trim().startsWith("#") ? tagline.substring(1) : tagline
+
+        const response = await fetch(`/api/account/mmr/${region.trim()}/${gamename.trim()}/${tag.trim()}`)
 
         if (!response.ok) {
             if (response.status === 404) {
-                showMessage("If your RIOT ID and TAG are correct, please try playing any match with this account.", { type: 'information', keepOnScreen: true })
+                showMessage("If your RIOT ID and TAG are correct, please try playing any match with this account.", { type: 'information', duration: 10000 })
             }
 
             if (response.status === 500) {
@@ -87,28 +93,40 @@ export default function TypeNickname() {
 
             return
         }
+        setMmr(null)
+        setMatches(null)
 
         const data = await response.json() as MmrResponse
 
         setMmr(data)
+
+        localStorage.setItem('gamename', gamename)
+        localStorage.setItem('tagline', tagline)
+        localStorage.setItem('region', region)
     }
 
     useEffect(() => {
+        const gameNameStorage = localStorage.getItem('gamename')
+        const taglineStorage = localStorage.getItem('tagline')
+        const regionStorage = localStorage.getItem('region')
+
         if (typeof window !== 'undefined' && window.navigator.language !== 'pt-BR')
             setRegion('na')
         else
             setRegion('br')
+
+        if (gameNameStorage)
+            setGamename(gameNameStorage)
+        if (taglineStorage)
+            setTagline(taglineStorage)
+        if (regionStorage)
+            setRegion(regionStorage)
     }, [])
 
     useEffect(() => {
-        if (tagline[0] === '#')
-            setTagline(tagline.substring(1))
-    }, [tagline])
-
-    useEffect(() => {
-        if (account && mmr)
+        if (account && mmr && !loading)
             document.getElementById('account-detail')?.scrollIntoView({ behavior: 'smooth' })
-    }, [account, mmr])
+    }, [loading])
 
     return (
         <section className={styles.container}>
@@ -119,22 +137,28 @@ export default function TypeNickname() {
                     className={styles.gameName}
                     placeholder='RIOT ID'
                     disabled={loading}
+                    value={gamename}
+                    spellCheck={false}
                 />
-                <input
-                    onChange={(e) => setTagline(e.target.value)}
-                    className={styles.tagline}
-                    placeholder='TAG'
-                    disabled={loading}
-                />
-                <select className={styles.regions} value={region} onChange={handleChange}>
-                    <optgroup label="Region">
-                        {
-                            options.map((item, index) => (
-                                <option key={index} value={item.value}>{item.title}</option>
-                            ))
-                        }
-                    </optgroup>
-                </select>
+                <div className={styles.splitted}>
+                    <input
+                        onChange={(e) => setTagline(e.target.value)}
+                        className={styles.tagline}
+                        placeholder='TAG'
+                        disabled={loading}
+                        value={tagline}
+                        spellCheck={false}
+                    />
+                    <select className={styles.regions} value={region} onChange={handleChange}>
+                        <optgroup label="Region">
+                            {
+                                options.map((item, index) => (
+                                    <option key={index} value={item.value}>{item.title}</option>
+                                ))
+                            }
+                        </optgroup>
+                    </select>
+                </div>
             </div>
             <button onClick={fetchUserData} className={styles.btn} disabled={loading}>
                 {loading ? 'SEARCHING...' : 'SEARCH'}

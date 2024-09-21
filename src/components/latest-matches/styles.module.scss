@@ -1,0 +1,52 @@
+@import '../../app/styles/functions.scss';
+
+.container {
+    @include contentSize;
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 5vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
+    &>h2 {
+        font-size: 4vh;
+    }
+
+    @media screen and (orientation: portrait) {
+        &>h2 {
+            text-align: center;
+        }
+    }
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    width: 100%;
+    padding-top: 3.5vh;
+    padding-bottom: 3.5vh;
+}
+
+.expansibleArea {
+    width: auto;
+    height: auto;
+    opacity: 0;
+}
+
+.show {
+    animation: show .2s ease forwards;
+}
+
+@keyframes show {
+    from {
+        opacity: 0.5;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

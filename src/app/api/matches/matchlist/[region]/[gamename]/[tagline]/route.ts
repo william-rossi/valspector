@@ -22,6 +22,7 @@ export async function GET(
                 headers: {
                     "Authorization": `${process.env.NEXT_PUBLIC_API_KEY}`
                 },
+                cache: 'no-store'
             }
         )
 
