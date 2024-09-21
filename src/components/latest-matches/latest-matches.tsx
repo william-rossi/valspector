@@ -55,9 +55,10 @@ export default function LatestMatches() {
                                     match={item}
                                     account={account}
                                     setMatchId={setMatchId}
+                                    isOpen={item.metadata.match_id === matchId}
                                 />
                                 {
-                                    (item.metadata.match_id === matchId && item.metadata.queue.id !== 'deathmatch') &&
+                                    item.metadata.match_id === matchId &&
                                     <CardDetails match={item} />
                                 }
                             </div>

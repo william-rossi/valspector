@@ -126,7 +126,7 @@ export default function TypeNickname() {
     useEffect(() => {
         if (account && mmr && !loading)
             document.getElementById('account-detail')?.scrollIntoView({ behavior: 'smooth' })
-    }, [loading])
+    }, [mmr])
 
     return (
         <section className={styles.container}>

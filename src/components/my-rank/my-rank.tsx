@@ -7,6 +7,7 @@ import { useMessage } from '@/context/message/message-context'
 import { ErrorResponse } from '@/models/error'
 import { MatchlistResponse } from '@/models/matchlist'
 import { useMatches } from '@/context/matches-context'
+import { Helper } from '@/data/helper'
 
 interface InfoProps {
     title?: string
@@ -107,12 +108,12 @@ export default function MyRank() {
     }, [statsId])
 
     const infos: InfoProps[] = [
-        { name: "Highest rank", data: mmr?.data.highest_rank.patched_tier ?? "N/A", title: `Episode ${mmr?.data.highest_rank.season[1]} Act ${mmr?.data.highest_rank.season[3]}` },
+        { name: "Highest rank", data: mmr?.data.highest_rank.patched_tier ?? "N/A", title: Helper.getSeasonFormatted(mmr?.data.highest_rank.season) },
         { name: "Elo", data: mmr?.data.current_data.elo ?? 0 },
         { name: "Ranked matches", data: getTotalRankedGames() },
-        { name: "Wins in ranked", data: getTotalWinRankedGames() },
+        { name: "Ranked wins", data: getTotalWinRankedGames() },
         { name: "Win rate", data: getWinRate() },
-        { name: "Last earned MMR", data: mmr?.data.current_data.mmr_change_to_last_game ?? 0 },
+        { name: "Last match MMR", data: mmr?.data.current_data.mmr_change_to_last_game ?? 0 },
         { name: "Games to get rank", data: mmr?.data.current_data.games_needed_for_rating ?? 0, show: mmr?.data.current_data.games_needed_for_rating ?? 0 > 0 ? true : false },
         { name: "Current MMR", data: mmr?.data.current_data.ranking_in_tier ?? 0 },
         { name: "MMR to next tier", data: 100 - (mmr?.data.current_data.ranking_in_tier ?? 0) }

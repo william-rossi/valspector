@@ -17,7 +17,7 @@ export async function GET(
         }
 
         const response = await fetch(
-            `${base_url}/v4/matches/${params.region}/pc/${params.gamename}/${params.tagline}?size=50`,
+            `${base_url}/v4/matches/${params.region}/pc/${params.gamename}/${params.tagline}?size=20`,
             {
                 headers: {
                     "Authorization": `${process.env.NEXT_PUBLIC_API_KEY}`

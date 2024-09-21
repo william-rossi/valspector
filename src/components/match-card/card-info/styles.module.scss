@@ -9,6 +9,15 @@
     position: relative;
     user-select: none;
     cursor: pointer;
+    transition: .2s;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+
+    &:active {
+        transform: scale(1);
+    }
 }
 
 .won {
@@ -17,6 +26,16 @@
 
 .lost {
     background: linear-gradient(90deg, rgba(255, 70, 85, 0.7372198879551821) 0%, rgba(27, 29, 36, 0) 100%);
+}
+
+.mapName {
+    display: flex;
+    align-items: center;
+    gap: 0.7vh;
+
+    &>span {
+        line-height: 1.1;
+    }
 }
 
 .mapImage {

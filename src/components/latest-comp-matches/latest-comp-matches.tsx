@@ -55,6 +55,7 @@ export default function LatestCompMatches() {
                                     match={item}
                                     account={account}
                                     setMatchId={setMatchId}
+                                    isOpen={item.metadata.match_id === matchId}
                                 />
                                 {
                                     item.metadata.match_id === matchId &&

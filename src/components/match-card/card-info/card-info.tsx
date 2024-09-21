@@ -8,16 +8,39 @@ interface Props {
     match: MatchProps
     account: AccountResponse | null
     setMatchId(e: string): void
+    isOpen: boolean
 }
 
 export default function CardInfo(props: Props) {
+    const renderClass = () => {
+        return `${styles.container} ${Match.hasWonMatch(props.match, props.account) ? styles.won : styles.lost}`
+    }
     return (
-        <div onClick={() => props.setMatchId(props.match.metadata.match_id)} className={`${styles.container} ${Match.hasWonMatch(props.match, props.account) ? styles.won : styles.lost}`}>
+        <div style={props.isOpen ? { transform: 'none', transition: '0s' } : {}} onClick={() => props.setMatchId(props.match.metadata.match_id)} className={renderClass()}>
             <div className={styles.mapImage}>
-                <img draggable={false} src={Match.getMapImage(props.match)} alt='map' onError={(e) => e.currentTarget.src = '/images/maps/default.jpg'} />
+                <img
+                    style={props.isOpen ? { borderBottomLeftRadius: 0 } : {}}
+                    draggable={false}
+                    src={Match.getMapImage(props.match)}
+                    alt='map'
+                    onError={(e) => e.currentTarget.src = '/images/maps/default.jpg'}
+                />
             </div>
             <div className={styles.infos}>
-                <h5>{props.match.metadata.map.name}</h5>
+                <div className={styles.mapName}>
+                    {
+                        Match.isMvp(props.match, props.account)
+                            ?
+                            <span data-title="MVP" style={{ color: '#f7ef8b' }}>★</span>
+                            :
+                            Match.isTeamMvp(props.match, props.account)
+                                ?
+                                <span data-title="Team MVP">★</span>
+                                :
+                                <></>
+                    }
+                    <h5>{props.match.metadata.map.name}</h5>
+                </div>
                 <span className={styles.resultText}>{Match.hasWonMatch(props.match, props.account) ? "Victory" : "Defeat"} ({Match.getMatchResult(props.match, props.account)})</span>
                 <div className={styles.kda}>
                     <label>{Match.getCharacterName(props.match, props.account)}</label>

@@ -1,26 +1,19 @@
 .container {
     display: flex;
-    gap: 5vh;
+    gap: 2.5vh;
     background: linear-gradient(90deg, rgba(42, 45, 55, 1) 0%, rgba(27, 29, 36, 0) 100%);
     border-radius: 0 0 0 0.5vh;
     padding: 2vh;
-
-    @media screen and (orientation: portrait) {
-        flex-direction: column;
-        gap: 2vh;
-    }
+    flex-direction: column;
+    gap: 2vh;
 }
 
 .matchInfos {
     display: flex;
     flex-direction: column;
     gap: 0.5vh;
-    flex: 0.3;
-
-    @media screen and (orientation: portrait) {
-        align-items: center;
-        justify-content: center;
-    }
+    align-items: center;
+    justify-content: center;
 
     &>h3 {
         margin-bottom: 2vh;
@@ -29,11 +22,8 @@
 
     &>label {
         font-size: 2.3vh;
-
-        @media screen and (orientation: portrait) {
-            text-align: center;
-            margin-bottom: 1vh;
-        }
+        margin-bottom: 0.5vh;
+        text-align: center;
     }
 
     &>span {
@@ -58,7 +48,14 @@
     align-items: center;
     gap: 1.5vh;
     flex: 1;
-    border-left: 0.2vh solid var(--bg-color);
+
+    &:last-child {
+        border-left: 0.2vh solid var(--bg-color);
+
+        @media screen and (orientation: portrait) {
+            border-left: none;
+        }
+    }
 
     @media screen and (orientation: portrait) {
         border-left: none;
@@ -97,10 +94,10 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5vh;
-    min-width: 15vh;
+    min-width: 17vh;
 
-    &>b {
-        font-size: 1.8vh;
+    @media screen and (orientation: portrait) {
+        min-width: 15vh;
     }
 
     &>span,
@@ -112,5 +109,22 @@
         font-size: 1.7vh;
         margin-top: 0.5vh;
         font-weight: bold;
+    }
+}
+
+.playerName {
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+
+    &>b,
+    &>span {
+        font-size: 1.8vh;
+    }
+
+    &>span {
+        opacity: 0.7;
+        font-size: 1.5vh;
+        text-transform: lowercase;
     }
 }
