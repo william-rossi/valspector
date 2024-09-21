@@ -39,8 +39,15 @@ export class Match {
 
     static getMatchResult = (match: MatchProps, account: AccountResponse | null) => {
         const player = match.players.find(p => p.name === account?.data.name && p.tag === account.data.tag)
-        const playerTeam = match.teams.find(pt => pt.team_id.toLocaleLowerCase() === player?.team_id.toLocaleLowerCase())
-        return `${playerTeam?.rounds.won} - ${playerTeam?.rounds.lost}`
+
+        if (!player) return ""
+
+        if (match.metadata.queue.id.toLocaleLowerCase() !== 'deathmatch') {
+            const playerTeam = match.teams.find(pt => pt.team_id.toLocaleLowerCase() === player?.team_id.toLocaleLowerCase())
+            return `${playerTeam?.rounds.won} - ${playerTeam?.rounds.lost}`
+        }
+
+        return `${match.players.indexOf(player) + 1}º`
     }
 
     static hasWonMatch = (match: MatchProps, account: AccountResponse | null) => {
