@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+**Valspector** is an online tool for retrieving and displaying basic statistics from any Valorant account, by passing RIOT ID and TAG, including match history, performance metrics, and rankings.
+
+## Project Setup
+
+### Version
+- **Next.js** version: `14.2.12`
+- **React** version: `18`
+- **Sass** version: `1.79.1`
 
 ## Getting Started
 
-First, run the development server:
+To run the project locally, follow the instructions below.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (version 16 or later)
+- npm or yarn
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/valspector.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd valspector
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+### Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- **Development Mode**: To start the development server:
+  ```bash
+  npm run dev
+  ```
+  This will run the Next.js development server at `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Build for Production**: To build the project:
+  ```bash
+  npm run build
+  ```
+  This will generate the production-ready files.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Start the Production Server**: After building, run:
+  ```bash
+  npm start
+  ```
 
-## Deploy on Vercel
+- **Linting**: To run the linter and check for code quality:
+  ```bash
+  npm run lint
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technologies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js**: A React framework for server-side rendering and static site generation.
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A strongly typed programming language that builds on JavaScript.
+- **Sass**: A CSS pre-processor that adds power and elegance to the basic language.
+- **ESLint**: A linter for identifying and fixing code quality issues.
+
+## Development
+
+### Directory Structure
+
+- `/pages`: Contains the application’s main pages and routes.
+- `/components`: Reusable React components used across the application.
+- `/styles`: Sass styles for styling the components and pages.
+
+### TypeScript
+
+This project uses **TypeScript** to provide static typing, improving code quality and developer experience.
+
+### Linting
+
+The project uses **ESLint** with the **Next.js** configuration to maintain consistent code standards.
