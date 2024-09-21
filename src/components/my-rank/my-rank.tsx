@@ -132,7 +132,7 @@ export default function MyRank() {
                     infos.map((item, index) => (
                         item.show != false &&
                         <div key={index} style={{ animationDuration: (index === 0 ? 0.5 : index) * 0.07 + `s` }} className={`${styles.infoContainer} ${showStats && styles.show}`}>
-                            <div title={item.title} className={`${styles.info}`}>
+                            <div data-title={item.title} className={`${styles.info}`}>
                                 <span>{item.name}</span>
                                 <b>{item.data}</b>
                             </div>
