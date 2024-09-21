@@ -69,6 +69,10 @@
     flex-wrap: wrap;
     gap: 1.5vh;
 
+    @media screen and (orientation: portrait) {
+        gap: 1vh;
+    }
+
     &>h3 {
         font-size: 6vh;
 
