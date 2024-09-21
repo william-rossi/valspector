@@ -70,7 +70,7 @@ export default function LatestMatches() {
 
     return (
         <section className={styles.container}>
-            <h2>Latest matches</h2>
+            <h2>Latest non-competitive matches</h2>
             {renderMatches()}
         </section>
     )
