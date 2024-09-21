@@ -139,6 +139,10 @@ export default function TypeNickname() {
                     disabled={loading}
                     value={gamename}
                     spellCheck={false}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter")
+                            fetchUserData()
+                    }}
                 />
                 <div className={styles.splitted}>
                     <input
@@ -148,8 +152,18 @@ export default function TypeNickname() {
                         disabled={loading}
                         value={tagline}
                         spellCheck={false}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter")
+                                fetchUserData()
+                        }}
                     />
-                    <select className={styles.regions} value={region} onChange={handleChange}>
+                    <select
+                        className={styles.regions} value={region}
+                        onChange={handleChange}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter")
+                                fetchUserData()
+                        }}>
                         <optgroup label="Region">
                             {
                                 options.map((item, index) => (
