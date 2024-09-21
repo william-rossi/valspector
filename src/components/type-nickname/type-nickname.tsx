@@ -130,7 +130,7 @@ export default function TypeNickname() {
 
     return (
         <section className={styles.container}>
-            <h1>Enter your Riot ID and TAG to access your VALORANT stats.</h1>
+            <h1>Enter your RIOT ID and TAG to access your VALORANT stats.</h1>
             <div className={styles.inputArea}>
                 <input
                     onChange={(e) => setGamename(e.target.value)}
