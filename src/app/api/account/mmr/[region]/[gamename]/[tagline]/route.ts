@@ -19,6 +19,7 @@ export async function GET(
         const response = await fetch(
             `${base_url}/v2/mmr/${params.region}/${params.gamename}/${params.tagline}`,
             {
+                cache: 'no-store',
                 headers: {
                     "Authorization": `${process.env.NEXT_PUBLIC_API_KEY}`
                 },
